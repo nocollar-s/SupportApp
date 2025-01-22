@@ -3,19 +3,18 @@ import {View, Text ,TextInput, StyleSheet } from 'react-native'
 import Header from'../../components/Header'
 import Button from'../../components/Button'
 
-
-const LogIn =():JSX.Element =>{
+const SignUp =():JSX.Element =>{
     return (
         <View style={styles.container}>
             <Header />
             <View style={styles.inner}>
-                <Text style={styles.title}>Log In</Text>
+                <Text style={styles.title}>Sign Up</Text>
                 <TextInput style={styles.input}value='Email address' />
                 <TextInput style={styles.input}value='Password' />
                 <Button label='Submit' />
                 <View style={styles.footer}>
-                    <Text style={styles.footerText}>Not registerd?</Text>
-                    <Text style={styles.footerLink}>Sign up here!</Text>
+                    <Text style={styles.footerText}>Already registered?</Text>
+                    <Text style={styles.footerLink}>LogIn!</Text>
                 </View>
             </View>
         </View>
@@ -31,11 +30,11 @@ const styles = StyleSheet.create({
         fontSize: 25,
         lineHeight: 32,
         fontWeight: 'bold',
-        marginBottom: 24,
+        marginBottom: 24
     },
     inner:{
         paddingVertical: 24,
-        paddingHorizontal: 27,
+        paddingHorizontal: 27
     },
     input:{
         backgroundColor:'#ffffff',
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
         height: 48,
         padding: 8,
         fontSize: 16,
-        marginBottom: 16,
+        marginBottom: 16
     },
     footer:{
         flexDirection: 'row',
@@ -63,4 +62,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default LogIn
+export default SignUp
