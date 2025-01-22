@@ -1,4 +1,7 @@
-import { View, Text, StyleSheet} from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+
+import { Feather } from '@expo/vector-icons'
+import CircleButton from './CircleButton'
 
 const memoListItem =(): JSX.Element => {
     return(
@@ -8,13 +11,16 @@ const memoListItem =(): JSX.Element => {
                 <Text style={styles.memoListItemDate}>何年何月何日何時</Text>
             </View>
             <View>
-                <Text>X</Text>
+                <TouchableOpacity>
+                    <Feather name ='delete' size={40} color='#B0B0B0' />
+                </TouchableOpacity>
             </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+
     memoListItem:{
         backgroundColor: '#ffffff',
         flexDirection: 'row',
