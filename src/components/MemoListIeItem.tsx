@@ -1,21 +1,24 @@
 import { View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import { Link } from 'expo-router'
+
 
 import { Feather } from '@expo/vector-icons'
-import CircleButton from './CircleButton'
 
 const memoListItem =(): JSX.Element => {
     return(
-        <View style={styles.memoListItem}>
-            <View>
-                <Text style={styles.memoListItemTitle}>買い物リスト</Text>
-                <Text style={styles.memoListItemDate}>何年何月何日何時</Text>
-            </View>
-            <View>
-                <TouchableOpacity>
-                    <Feather name ='delete' size={40} color='#B0B0B0' />
-                </TouchableOpacity>
-            </View>
-        </View>
+        <Link href='/memo/detail' asChild>
+            <TouchableOpacity style={styles.memoListItem}>
+                <View>
+                    <Text style={styles.memoListItemTitle}>買い物リスト</Text>
+                    <Text style={styles.memoListItemDate}>何年何月何日何時</Text>
+                </View>
+                <View>
+                    <TouchableOpacity>
+                        <Feather name ='delete' size={40} color='#B0B0B0' />
+                    </TouchableOpacity>
+                </View>
+            </TouchableOpacity>
+        </Link>
     )
 }
 
