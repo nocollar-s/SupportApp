@@ -1,15 +1,26 @@
 import {
-    View, Text ,TextInput,
+    View, Text ,TextInput,Alert,
     TouchableOpacity, StyleSheet
 } from 'react-native'
 
 import{ Link, router } from 'expo-router'
 import{ useState } from 'react'
 import Button from'../../components/Button'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import {auth} from'../../config'
 
-const handlePresss=(): void => {
+const handlePresss=(email: string, password: string): void => {
      //ログイン
-    router.replace('/memo/list')
+     signInWithEmailAndPassword(auth, email,password)
+      .then((userCredential) => {
+        console.log(userCredential.user.uid)
+        router.replace('/memo/list')
+      })
+      .catch((error) =>{
+        const { code,message } = error
+        console.log(code, message)
+        Alert.alert(message)
+      })
     //replaceだと置き換え、pushだと前ページに戻れる
 }
 
@@ -47,10 +58,10 @@ const LogIn =():JSX.Element =>{
                 //先々でキーチェーンに自動保管してもらうかもなので設定しておく
                 textContentType='password'
                 />
-                <Button label='Submit' onPress={handlePresss} />
+                <Button label='Submit' onPress={() =>handlePresss(email, password)} />
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>Not registerd?</Text>
-                    <Link href='/auth/sign_up' asChild>
+                    <Link href='/auth/sign_up' asChild replace>
                         <TouchableOpacity>
                             <Text style={styles.footerLink}>Sign up here!</Text>
                         </TouchableOpacity>
