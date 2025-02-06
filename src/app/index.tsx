@@ -3,11 +3,15 @@ import { NavigationContainer, NavigationIndependentTree } from '@react-navigatio
 import { createStackNavigator } from "@react-navigation/stack"
 import Articles from "./memo/articles"
 import Kihonteate from "./memo/kihonteate"
+import Kihonteate2 from './memo/kihonteate2'
+import MyTabs from './MyTabs'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar } from 'react-native'
 import HomeButton from '../components/HomeButton'
 import{ AntDesign } from '@expo/vector-icons'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 const Stack = createStackNavigator()
+//const Tab = createBottomTabNavigator();//この行を追加
 
 // カスタムヘッダーコンポーネント
 const CustomHeader = ({ navigation, route, options, back }) => {
@@ -32,14 +36,17 @@ const CustomHeader = ({ navigation, route, options, back }) => {
 const Index = ():JSX.Element => {
     return(
         <NavigationIndependentTree>
+
             <Stack.Navigator>
                 <Stack.Screen name='Articles' component={Articles}
                 options={{title: '補助金サポート', header: CustomHeader}} />
                 <Stack.Screen name='Kihonteate' component={Kihonteate}
                 options={{title: '補助金サポート', header: CustomHeader}} />
+                <Stack.Screen name="MyTabs" component={MyTabs} />
                                
             </Stack.Navigator>
         </NavigationIndependentTree>
+
     )
 }
 
