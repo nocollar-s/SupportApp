@@ -18,4 +18,8 @@ const firebaseConfig = {
   })
   const db = getFirestore(app)
 
-  export {app, auth, db}
+  const articlesUrl = 'https://c7jz4v0wv8.microcms.io/api/v1/articles'
+  const cmsKey = 'EwjYNnz3FbpPQVnmynXcCbNyyRPLMK1CKgOK'
+
+
+  export {app, auth, db ,articlesUrl,cmsKey }
