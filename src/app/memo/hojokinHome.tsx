@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Keyboard, Alert } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Keyboard, Alert, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // useNavigation をインポート
+import Kihonteate2 from './kihonteate2';
 
 const HojokinHome = () => {
   const [standardMonthlySalary, setStandardMonthlySalary] = useState('');
   const [daysOff, setDaysOff] = useState('');
   const [salaryDuringAbsence, setSalaryDuringAbsence] = useState('');
   const [benefitAmount, setBenefitAmount] = useState('');
+  const navigation = useNavigation(); // navigation オブジェクトを取得
 
   const calculateBenefit = () => {
     Keyboard.dismiss();
@@ -50,6 +53,10 @@ const HojokinHome = () => {
       />
       <Button title="計算" onPress={calculateBenefit} />
       <Text style={styles.result}>支給額：{benefitAmount} 円</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Kihonteate2')}>
+              <Text>次のページ</Text>
+            </TouchableOpacity>
+      
     </View>
   );
 };
