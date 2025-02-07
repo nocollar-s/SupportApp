@@ -7,11 +7,14 @@ import { AntDesign } from '@expo/vector-icons'; // AntDesign をインポート
 import { Entypo } from '@expo/vector-icons'; // AntDesign をインポート
 import Articles2 from './memo/articles2';
 
+import { createStackNavigator } from '@react-navigation/stack';
+
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const MyTabs = () => {
   return (
-    <Tab.Navigator　
+    <Stack.Navigator　
     initialRouteName='Articles'
       screenOptions={{
       tabBarStyle: {
@@ -23,7 +26,7 @@ const MyTabs = () => {
     }
     // その他のタブのオプション
   }} >
-    <Tab.Screen
+    <Stack.Screen
     name="Spacer" // スペーサー用のタブ
     component={() => null} // コンポーネントは不要
     options={{
@@ -31,7 +34,7 @@ const MyTabs = () => {
     }}
   />
       
-      <Tab.Screen
+      <Stack.Screen
         name="Articles"
         component={Articles}
         options={{
@@ -41,7 +44,7 @@ const MyTabs = () => {
           ),
         }}
       />
-      <Tab.Screen
+      <Stack.Screen
         name="Keisan"
         component={Keisan}
         options={{
@@ -52,7 +55,7 @@ const MyTabs = () => {
         }}
       />
       
-    </Tab.Navigator>
+    </Stack.Navigator>
   );
 };
 
