@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Keyboard, Alert, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Kihonteate from './kihonteate'; // 詳細ページコンポーネント
+import Articles2 from './articles2';
 
 const Articles = () => {
   const navigation = useNavigation();
@@ -47,7 +47,7 @@ const Articles = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>傷病手当金計算</Text>
+      <Text style={styles.title}>「一覧HOME」傷病手当金計算</Text>
       <Text>標準報酬月額（円）</Text>
       <TextInput
         style={styles.input}
@@ -77,7 +77,7 @@ const Articles = () => {
         支給額：{benefitAmount} 円
       </Text>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Kihonteate')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Articles2')}>
         <Text>次のページ</Text>
       </TouchableOpacity>
     </View>

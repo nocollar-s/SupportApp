@@ -2,23 +2,33 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HojokinHome from './memo/hojokinHome'; // HojokinHome コンポーネントをインポート
 import Articles from './memo/articles'; // Articles コンポーネントをインポート
-import Kihonteate from './memo/kihonteate'; // Kihonteate コンポーネントをインポート
+import Keisan from './memo/keisan'; // Kihonteate コンポーネントをインポート
 import { AntDesign } from '@expo/vector-icons'; // AntDesign をインポート
-import Kihonteate2 from './memo/kihonteate2'; // Kihonteate2 をインポート
+import Articles2 from './memo/articles2';
 
 const Tab = createBottomTabNavigator();
 
 const MyTabs = () => {
   return (
     <Tab.Navigator　
+    initialRouteName='HojokinHome'
       screenOptions={{
       tabBarStyle: {
       backgroundColor: 'lightgray', // タブバーの背景色
       borderTopWidth: 1, // タブバーのボーダー
       borderTopColor: 'gray',
+      height:65
+
     }
     // その他のタブのオプション
   }} >
+    <Tab.Screen
+    name="Spacer" // スペーサー用のタブ
+    component={() => null} // コンポーネントは不要
+    options={{
+      tabBarButton: () => null, // タブバーに表示しない
+    }}
+  />
       <Tab.Screen
         name="HojokinHome"
         component={HojokinHome}
@@ -40,8 +50,8 @@ const MyTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Kihonteate"
-        component={Kihonteate}
+        name="Keisan"
+        component={Keisan}
         options={{
           tabBarLabel: '計算',
           tabBarIcon: ({ color, size }) => (
@@ -49,6 +59,7 @@ const MyTabs = () => {
           ),
         }}
       />
+      <Tab.Screen name="Articles2" component={Articles2} options={{ tabBarButton: () => null }} />
       
     </Tab.Navigator>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer, NavigationIndependentTree } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MyTabs from './MyTabs'; // MyTabs コンポーネントをインポート
-import Kihonteate2 from './memo/kihonteate2';
+import Articles2 from './memo/articles2';
 
 const Stack = createStackNavigator();
 

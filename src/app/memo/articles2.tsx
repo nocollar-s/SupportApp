@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Keyboard, Alert } from 'react-native';
 
-const Kihonteate = () => {
+const Articles2 = () => {
   const [standardMonthlySalary, setStandardMonthlySalary] = useState('');
   const [daysOff, setDaysOff] = useState('');
   const [salaryDuringAbsence, setSalaryDuringAbsence] = useState('');
@@ -26,7 +26,7 @@ const Kihonteate = () => {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>基本手当　支給額</Text>
+        <Text style={styles.title}>「一覧2ページ目」基本手当　支給額</Text>
       <Text>標準報酬月額（円）</Text>
       <TextInput
         style={styles.input}
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Kihonteate;
+export default Articles2;

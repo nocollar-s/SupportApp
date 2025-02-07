@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Keyboard, Alert, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // useNavigation をインポート
-import Kihonteate2 from './kihonteate2';
+import Kihonteate2 from './articles2';
 
 const HojokinHome = () => {
   const [standardMonthlySalary, setStandardMonthlySalary] = useState('');
@@ -29,7 +29,7 @@ const HojokinHome = () => {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>基本手当　支給額</Text>
+        <Text style={styles.title}>「HOME」基本手当　支給額</Text>
       <Text>標準報酬月額（円）</Text>
       <TextInput
         style={styles.input}
@@ -53,7 +53,7 @@ const HojokinHome = () => {
       />
       <Button title="計算" onPress={calculateBenefit} />
       <Text style={styles.result}>支給額：{benefitAmount} 円</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Kihonteate2')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Articles2')}>
               <Text>次のページ</Text>
             </TouchableOpacity>
       
