@@ -1,55 +1,28 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Keyboard, Alert } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Keyboard, Alert,TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native';
 
 const Articles2 = () => {
-  const [standardMonthlySalary, setStandardMonthlySalary] = useState('');
-  const [daysOff, setDaysOff] = useState('');
-  const [salaryDuringAbsence, setSalaryDuringAbsence] = useState('');
-  const [benefitAmount, setBenefitAmount] = useState('');
-
-  const calculateBenefit = () => {
-    Keyboard.dismiss();
-    const dailyAmount = (parseInt(standardMonthlySalary) / 30) * (2 / 3);
-    const calculatedAmount = dailyAmount * parseInt(daysOff) - parseInt(salaryDuringAbsence);
-    
-    if (isNaN(calculatedAmount)) {
-        Alert.alert('計算エラー', '計算できませんでした。入力値を見直してください。');
-        setBenefitAmount('');
-        return;
-      }
-
-    const roundedAmount = Math.floor(calculatedAmount); // 小数点以下を切り捨て
-    const formattedAmount = roundedAmount.toLocaleString(); // 3桁ごとに「,」を追加
-    setBenefitAmount(formattedAmount);
-
-  };
-
+  const navigation = useNavigation();
+  
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>「一覧2ページ目」基本手当　支給額</Text>
-      <Text>標準報酬月額（円）</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        onChangeText={setStandardMonthlySalary}
-        value={standardMonthlySalary}
-      />
-      <Text>休業日数</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        onChangeText={setDaysOff}
-        value={daysOff}
-      />
-      <Text>休業中に支給された給与（円）</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        onChangeText={setSalaryDuringAbsence}
-        value={salaryDuringAbsence}
-      />
-      <Button title="計算" onPress={calculateBenefit} />
-      <Text style={styles.result}>支給額：{benefitAmount} 円</Text>
+      <TouchableOpacity onPress={() => {
+        navigation.dispatch(
+        CommonActions.navigate({
+          name: 'Keisan10'
+        })
+      );
+    }}>
+              <Text>傷病手当金10　計算ページ</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.push('Keisan20')}>
+              <Text>求職手当20　計算ページ</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Keisan30')}>
+              <Text>その他30　計算ページ</Text>
+      </TouchableOpacity>
     </View>
   );
 };

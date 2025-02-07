@@ -4,6 +4,7 @@ import HojokinHome from './memo/hojokinHome'; // HojokinHome コンポーネン�
 import Articles from './memo/articles'; // Articles コンポーネントをインポート
 import Keisan from './memo/keisan'; // Kihonteate コンポーネントをインポート
 import { AntDesign } from '@expo/vector-icons'; // AntDesign をインポート
+import { Entypo } from '@expo/vector-icons'; // AntDesign をインポート
 import Articles2 from './memo/articles2';
 
 const Tab = createBottomTabNavigator();
@@ -11,7 +12,7 @@ const Tab = createBottomTabNavigator();
 const MyTabs = () => {
   return (
     <Tab.Navigator　
-    initialRouteName='HojokinHome'
+    initialRouteName='Articles'
       screenOptions={{
       tabBarStyle: {
       backgroundColor: 'lightgray', // タブバーの背景色
@@ -29,23 +30,14 @@ const MyTabs = () => {
       tabBarButton: () => null, // タブバーに表示しない
     }}
   />
-      <Tab.Screen
-        name="HojokinHome"
-        component={HojokinHome}
-        options={{
-          tabBarLabel: 'ホーム',
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="home" size={size} color={color} />
-          ),
-        }}
-      />
+      
       <Tab.Screen
         name="Articles"
         component={Articles}
         options={{
-          tabBarLabel: '一覧',
+          tabBarLabel: 'HOME',
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name="list" size={size} color={color} />
+            <Entypo name="home" size={size} color={color} />
           ),
         }}
       />
@@ -55,11 +47,10 @@ const MyTabs = () => {
         options={{
           tabBarLabel: '計算',
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name="calculator" size={size} color={color} />
+            <Entypo name="calculator" size={size} color={color} />
           ),
         }}
       />
-      <Tab.Screen name="Articles2" component={Articles2} options={{ tabBarButton: () => null }} />
       
     </Tab.Navigator>
   );
