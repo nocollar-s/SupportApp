@@ -15,7 +15,7 @@ const Articles2 = () => {
         })
       );
     }}>
-              <Text>傷病手当金10　計算ページ</Text>
+              <Text>Article2傷病手当金10　計算ページ</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.push('Keisan20')}>
               <Text>求職手当20　計算ページ</Text>

@@ -14,46 +14,21 @@ const Stack = createStackNavigator();
 
 const MyTabs = () => {
   return (
-    <Stack.Navigator　
-    initialRouteName='Articles'
-      screenOptions={{
-      tabBarStyle: {
-      backgroundColor: 'lightgray', // タブバーの背景色
-      borderTopWidth: 1, // タブバーのボーダー
-      borderTopColor: 'gray',
-      height:65
+    <Stack.Navigator>
 
-    }
-    // その他のタブのオプション
-  }} >
-    <Stack.Screen
-    name="Spacer" // スペーサー用のタブ
-    component={() => null} // コンポーネントは不要
-    options={{
-      tabBarButton: () => null, // タブバーに表示しない
-    }}
-  />
+    
+  
+
+    
+      <Stack.Screen
+        name="Articles2"  component={ Articles2 } />    
+        
+    
+      <Stack.Screen
+        name="Keisan" component={Keisan} />
+          
+        
       
-      <Stack.Screen
-        name="Articles"
-        component={Articles}
-        options={{
-          tabBarLabel: 'HOME',
-          tabBarIcon: ({ color, size }) => (
-            <Entypo name="home" size={size} color={color} />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Keisan"
-        component={Keisan}
-        options={{
-          tabBarLabel: '計算',
-          tabBarIcon: ({ color, size }) => (
-            <Entypo name="calculator" size={size} color={color} />
-          ),
-        }}
-      />
       
     </Stack.Navigator>
   );

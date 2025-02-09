@@ -1,30 +1,21 @@
-import React from 'react';
-import { NavigationContainer, NavigationIndependentTree } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import MyTabs from './MyTabs'; // MyTabs コンポーネントをインポート
-import Articles2 from './memo/articles2';
-import Keisan10 from './memo/keisan10';
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
+import TestTabs from './TestTabs'
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
-
-const App = () => {
+function Index() {
   return (
-    <NavigationIndependentTree>
-      <Tab.Navigator>
-      
-        <Tab.Screen name="Home" component={MyTabs} options={{ headerShown: false }} />
-        {/* 必要であれば、他の Stack.Screen を追加 */}
+    <View style={styles.container}> 
+      <TestTabs />
+    </View>
+  )
+}
 
-        <Tab.Screen name="Articles2" component={Articles2} />
-      <Tab.Screen name="Keisan10" component={Keisan10} />  
-      </Tab.Navigator>
-      
-    </NavigationIndependentTree>
-  );
-};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    backgroundColor: '#fff'
+    
+  }
+})
 
-export default App;
+export default Index
