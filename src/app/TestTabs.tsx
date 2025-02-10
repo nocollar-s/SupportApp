@@ -1,112 +1,104 @@
-import React, { useRef } from 'react';
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { View, Text, StyleSheet, Dimensions, useWindowDimensions } from 'react-native';
-import FirstRoute from './FirstRoute'; // FirstRoute コンポーネントをimport
+
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { View, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import FirstRoute from './FirstRoute';
 import SecondRoute from './SecondRoute';
 import ThirdRoute from './ThirdRoute';
 import FourthRoute from './FourthRoute';
-import { PanGestureHandler, GestureHandlerRootView, State } from 'react-native-gesture-handler';
-import { Animated } from 'react-native';
+import { useNavigationState } from '@react-navigation/native';
+import React from 'react';
 
+const TestTabsNavigator = createMaterialTopTabNavigator();
 
 const TestTabs = () => {
-  const layout = useWindowDimensions()
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'fir', title: 'Item 1 (生活支援)' },
-    { key: 'seco', title: 'Item 2 (医療支援)'},
-    { key: 'thir', title: 'Item 3 (仕事に関連する支援) '}
-    //{ key: 'fourth', title: 'Item 4 (子ども支援)', tabStyle: { backgroundColor: 'lightyellow' } },
-  ]);
+  const navigationState = useNavigationState(state => state);
+  const [index, setIndex] = React.useState(0); // setIndex を定義
 
-  const renderScene = SceneMap({
-    fir: FirstRoute,
-    seco: SecondRoute,
-    thir: ThirdRoute,
-    //fourth: FourthRoute,
-  });
+  const renderTabBar = () => {
+    if (!navigationState || !navigationState.routes) {
+      return null;
+    }
+    return (
+      <View style={styles.tabBarContainer}>
+        {navigationState.routes.map((route, index) => {
+          const focused = index === navigationState.index;
+          const tabWidth = getTabWidth(route.name);
+          return (
+            <TouchableOpacity
+              key={route.key}
+              onPress={() => {
+                if (navigationState && navigationState.routes) {
+                  const newIndex = navigationState.routes.findIndex(r => r.key === route.key);
+                  setIndex(newIndex);
+                }
+              }}
+              style={[
+                styles.tab,
+                { width: tabWidth },
+                focused ? styles.tabFocused : null,
+              ]}
+            >
+              <Text style={focused ? styles.tabTextFocused : styles.tabText}>
+                {route.name}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    );
+  };
 
-  const renderTabBar = (props) => (
-    <TabBar
-      {...props}
-      scrollEnabled
-      style={styles.tabs}
-      indicatorStyle={styles.indicator}
-      labelStyle={styles.label}
-      tabStyle={styles.tab} // 各タブのスタイル
-    />
-  );
-
-  const { width } = Dimensions.get('window');
-  const translateX = useRef(new Animated.Value(0)).current;
-
-  const handleGestureEvent = Animated.event(
-    [{ nativeEvent: { translationX: translateX } }],
-    { useNativeDriver: true }
-  );
-
-  const handleHandlerStateChange = (event) => {
-    if (event.nativeEvent.state === State.END) {
-      const velocityX = event.nativeEvent.velocityX;
-      const shouldSwitch = Math.abs(velocityX) > 300; // スワイプ速度の閾値
-
-      if (shouldSwitch) {
-        const newIndex = velocityX > 0 ? Math.max(0, index - 1) : Math.min(routes.length - 1, index + 1);
-        setIndex(newIndex);
-      } else {
-        Animated.spring(translateX, {
-          toValue: 0,
-          useNativeDriver: true,
-        }).start();
-      }
+  const getTabWidth = (tabName) => {
+    switch (tabName) {
+      case 'FirstRoute':
+        return 150;
+      case 'SecondRoute':
+        return 100;
+      case 'ThirdRoute':
+        return 200;
+      case 'FourthRoute':
+        return 120;
+      default:
+        return 100;
     }
   };
 
-
-
   return (
-    <GestureHandlerRootView>
-      <PanGestureHandler
-        onGestureEvent={handleGestureEvent}
-        onHandlerStateChange={handleHandlerStateChange}
-        // collapsable={false} // Androidで必要
-      >
-        <Animated.View style={{ flex: 1, width: width, transform: [{ translateX }] }}>
-          <TabView
-            navigationState={{ index, routes }}
-            renderScene={renderScene}
-            onIndexChange={setIndex}
-            initialLayout={{ width:layout.width, height: 300 }}
-            renderTabBar={renderTabBar}
-          />
-        </Animated.View>
-      </PanGestureHandler>
-    </GestureHandlerRootView>
+    <TestTabsNavigator.Navigator
+      
+    >
+      <TestTabsNavigator.Screen name="FirstRoute" component={FirstRoute} />
+      <TestTabsNavigator.Screen name="SecondRoute" component={SecondRoute} />
+      <TestTabsNavigator.Screen name="ThirdRoute" component={ThirdRoute} />
+      <TestTabsNavigator.Screen name="FourthRoute" component={FourthRoute} />
+    </TestTabsNavigator.Navigator>
   );
 };
 
+
 const styles = StyleSheet.create({
-  scene: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  tabBarContainer: { // タブバー全体のスタイル
+    flexDirection: 'row', // 横方向に並べる
+    backgroundColor: '#f0f0f0', // 背景色
+    padding: 10, // パディング
   },
-  tabs: {
-    backgroundColor: 'black',
+  tab: { // 各タブのスタイル
+    alignItems: 'center', // 中央揃え
+    justifyContent: 'center', // 中央揃え
+    padding: 10, // パディング
+    borderWidth: 1, // 枠線
+    borderColor: '#ccc', // 枠線色
+    borderRadius: 5, // 角丸
+    marginRight: 5, // 右マージン
   },
-  tab: {
-    width: 'auto', // タブの幅を自動調整
-    borderWidth: 1, // 枠線をつける
-    borderColor: '#ccc', // 枠線の色
-    borderRadius: 5, // 角丸をつける
-    margin: 5, // タブ間の間隔
-    padding: 10, // タブ内のパディング
+  tabFocused: { // 選択中のタブのスタイル
+    backgroundColor: '#e91e63', // 背景色
   },
-  indicator: {
-    backgroundColor: '#4dc4c0',
+  tabText: { // タブのテキストスタイル
+    color: '#333', // 文字色
   },
-  label: {
-    color: 'black',
+  tabTextFocused: { // 選択中のタブのテキストスタイル
+    color: '#fff', // 文字色
   },
 });
 
