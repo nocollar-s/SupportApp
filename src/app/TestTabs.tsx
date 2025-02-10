@@ -65,7 +65,11 @@ const TestTabs = () => {
 
   return (
     <TestTabsNavigator.Navigator
-      
+      tabBar={renderTabBar}
+      initialLayout={{ width: Dimensions.get('window').width }}
+      screenOptions={({ route }) => ({
+        tabBarLabel: route.name,
+      })}
     >
       <TestTabsNavigator.Screen name="FirstRoute" component={FirstRoute} />
       <TestTabsNavigator.Screen name="SecondRoute" component={SecondRoute} />
