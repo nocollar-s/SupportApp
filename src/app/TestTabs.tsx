@@ -4,6 +4,7 @@ import FirstRoute from './FirstRoute'
 import SecondRoute from './SecondRoute'
 import ThirdRoute from './ThirdRoute'
 import FourthRoute from './FourthRoute'
+import FifthRoute from './FifthRoute'
 import React from 'react'
 
 const TestTabsNavigator = createMaterialTopTabNavigator()
@@ -43,6 +44,8 @@ const TestTabs = () => {
       <TestTabsNavigator.Screen name="SecondRoute" component={SecondRoute} />
       <TestTabsNavigator.Screen name="ThirdRoute" component={ThirdRoute} />
       <TestTabsNavigator.Screen name="FourthRoute" component={FourthRoute} />
+      <TestTabsNavigator.Screen name="FifthRoute" component={FifthRoute} />
+
     </TestTabsNavigator.Navigator>
   );
 };
