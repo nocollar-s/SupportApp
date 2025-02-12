@@ -1,75 +1,43 @@
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import FirstRoute from './FirstRoute'
+import SecondRoute from './SecondRoute'
+import ThirdRoute from './ThirdRoute'
+import FourthRoute from './FourthRoute'
+import React from 'react'
 
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { View, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import FirstRoute from './FirstRoute';
-import SecondRoute from './SecondRoute';
-import ThirdRoute from './ThirdRoute';
-import FourthRoute from './FourthRoute';
-import { useNavigationState } from '@react-navigation/native';
-import React from 'react';
+const TestTabsNavigator = createMaterialTopTabNavigator()
 
-const TestTabsNavigator = createMaterialTopTabNavigator();
+const CustomTabBar = ({ state, descriptors, navigation }) => {
+  return (
+    <View style={styles.tabBarContainer }>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+      {state.routes.map((route, index) => {
+        const isFocused = state.index === index
+        return (
+          <TouchableOpacity
+            key={route.key}
+            onPress={() => navigation.navigate(route.name)}
+            style={[styles.tab, isFocused && styles.tabFocused]}
+          >
+            <Text style={[styles.tabText, isFocused && styles.tabTextFocused]}>
+              {route.name}
+            </Text>
+          </TouchableOpacity>
+        )
+      })}
+    </ScrollView>
+    </View>
+  )
+}
 
 const TestTabs = () => {
-  const navigationState = useNavigationState(state => state);
-  const [index, setIndex] = React.useState(0); // setIndex を定義
-
-  const renderTabBar = () => {
-    if (!navigationState || !navigationState.routes) {
-      return null;
-    }
-    return (
-      <View style={styles.tabBarContainer}>
-        {navigationState.routes.map((route, index) => {
-          const focused = index === navigationState.index;
-          const tabWidth = getTabWidth(route.name);
-          return (
-            <TouchableOpacity
-              key={route.key}
-              onPress={() => {
-                if (navigationState && navigationState.routes) {
-                  const newIndex = navigationState.routes.findIndex(r => r.key === route.key);
-                  setIndex(newIndex);
-                }
-              }}
-              style={[
-                styles.tab,
-                { width: tabWidth },
-                focused ? styles.tabFocused : null,
-              ]}
-            >
-              <Text style={focused ? styles.tabTextFocused : styles.tabText}>
-                {route.name}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    );
-  };
-
-  const getTabWidth = (tabName) => {
-    switch (tabName) {
-      case 'FirstRoute':
-        return 150;
-      case 'SecondRoute':
-        return 100;
-      case 'ThirdRoute':
-        return 200;
-      case 'FourthRoute':
-        return 120;
-      default:
-        return 100;
-    }
-  };
-
   return (
     <TestTabsNavigator.Navigator
-      tabBar={renderTabBar}
-      initialLayout={{ width: Dimensions.get('window').width }}
-      screenOptions={({ route }) => ({
-        tabBarLabel: route.name,
-      })}
+      tabBar={(props) => <CustomTabBar {...props} />}
+      screenOptions={{
+        tabBarStyle: { backgroundColor: '#f0f0f0' }
+      }}
     >
       <TestTabsNavigator.Screen name="FirstRoute" component={FirstRoute} />
       <TestTabsNavigator.Screen name="SecondRoute" component={SecondRoute} />
@@ -79,30 +47,35 @@ const TestTabs = () => {
   );
 };
 
-
 const styles = StyleSheet.create({
-  tabBarContainer: { // タブバー全体のスタイル
-    flexDirection: 'row', // 横方向に並べる
-    backgroundColor: '#f0f0f0', // 背景色
-    padding: 10, // パディング
+  tabBarContainer: {
+    //flexDirection: 'row',
+    backgroundColor: 'yellow',
+    paddingVertical: 10,    
+    height: 60,
+    
+    //flex: 1,
+    //alignItems: 'center',
   },
-  tab: { // 各タブのスタイル
-    alignItems: 'center', // 中央揃え
-    justifyContent: 'center', // 中央揃え
-    padding: 10, // パディング
-    borderWidth: 1, // 枠線
-    borderColor: '#ccc', // 枠線色
-    borderRadius: 5, // 角丸
-    marginRight: 5, // 右マージン
+  tab: {
+    padding: 5,
+    marginHorizontal: 5,
+    marginVertical:'auto',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    height:40,   
+    justifyContent:'center'
+
   },
-  tabFocused: { // 選択中のタブのスタイル
-    backgroundColor: '#e91e63', // 背景色
+  tabFocused: {
+    backgroundColor: 'blue',
   },
-  tabText: { // タブのテキストスタイル
-    color: '#333', // 文字色
+  tabText: {
+    color: '#333',    
   },
-  tabTextFocused: { // 選択中のタブのテキストスタイル
-    color: '#fff', // 文字色
+  tabTextFocused: {
+    color: '#fff',
   },
 });
 
