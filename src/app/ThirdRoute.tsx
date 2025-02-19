@@ -6,7 +6,7 @@ import { View, Text, StyleSheet } from 'react-native';
 const ThirdRoute = () => {
   return (
     <View style={[styles.scene, { backgroundColor: 'lightblue' }]}>
-      <Text>Item 33 Second Content</Text>
+      <Text>Item 22 Second Content</Text>
     </View>
   );
 };

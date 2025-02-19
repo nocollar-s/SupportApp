@@ -7,7 +7,7 @@ import{ useState }from 'react'
 import KeyboardAvoidingView from '../../components/KeyboardAvoidingview'
 
 
-import CircleButton from '../../components/CircleButton'
+
 import { Feather } from '@expo/vector-icons'
 import{db, auth} from'../../config'
 

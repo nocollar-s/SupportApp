@@ -4,9 +4,6 @@ import { router, useNavigation } from 'expo-router'
 import { useEffect } from 'react'
 
 
-import MemoListItem from '../../components/MemoListIeItem'
-import CircleButton from '../../components/CircleButton'
-import LogOutButton from '../../components/LogOutButton'
 
 const handlePress = ():void => {
     router.push('/memo/create')

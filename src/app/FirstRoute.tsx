@@ -1,10 +1,12 @@
+
+
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const FirstRoute = () => {
   return (
-    <View style={[styles.scene, { backgroundColor: 'lightyellow' }]}>
-      <Text>Item 1 First Content</Text>
+    <View style={[styles.scene, { backgroundColor: 'lightblue' }]}>
+      <Text>Item 22 Second Content</Text>
     </View>
   );
 };

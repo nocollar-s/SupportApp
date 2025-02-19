@@ -3,7 +3,7 @@ import {
  } from 'react-native'
 
 import {router} from 'expo-router'
-import CircleButton from '../../components/CircleButton'
+
 import { Feather } from '@expo/vector-icons'
 
 const handlePress = ():void => {

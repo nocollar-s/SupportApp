@@ -2,16 +2,17 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import FirstRoute from './FirstRoute'
 import SecondRoute from './SecondRoute'
-import ThirdRoute from './ThirdRoute'
 import FourthRoute from './FourthRoute'
-import FifthRoute from './FifthRoute'
+import ThirdRoute from './ThirdRoute'
 import React from 'react'
+import { StatusBar } from 'expo-status-bar'
 
 const TestTabsNavigator = createMaterialTopTabNavigator()
 
 const CustomTabBar = ({ state, descriptors, navigation }) => {
   return (
-    <View style={styles.tabBarContainer }>
+    <View style={styles.container}>
+    <View style={styles.tabBarContainer}>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} >
       {state.routes.map((route, index) => {
         const isFocused = state.index === index
@@ -29,6 +30,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
       })}
     </ScrollView>
     </View>
+    </View>
   )
 }
 
@@ -44,21 +46,28 @@ const TestTabs = () => {
       <TestTabsNavigator.Screen name="SecondRoute" component={SecondRoute} />
       <TestTabsNavigator.Screen name="ThirdRoute" component={ThirdRoute} />
       <TestTabsNavigator.Screen name="FourthRoute" component={FourthRoute} />
-      <TestTabsNavigator.Screen name="FifthRoute" component={FifthRoute} />
 
     </TestTabsNavigator.Navigator>
   );
 };
 
 const styles = StyleSheet.create({
+  container:{
+    flex:0,
+    top:0,
+    backgroundColor: 'yellow',    
+
+  },
+  
   tabBarContainer: {
-    //flexDirection: 'row',
-    backgroundColor: 'yellow',
-    paddingVertical: 10,    
-    height: 60,
-    
-    //flex: 1,
-    //alignItems: 'center',
+    flexDirection: 'row',
+    paddingVertical: 10, 
+    top:25,   
+    height: 105,
+    justifyContent: 'flex-end',
+    backgroundColor:'green',
+    flex: 1,
+    alignItems: 'center',
   },
   tab: {
     padding: 5,

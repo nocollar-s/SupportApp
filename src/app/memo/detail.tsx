@@ -3,7 +3,6 @@ import {router} from 'expo-router'
 
 import {Feather } from '@expo/vector-icons'
 
-import CircleButton from '../../components/CircleButton'
 
 const handlePress = (): void =>{
     router.push('/memo/edit')
