@@ -1,18 +1,19 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import First from './test/First'
-import Second from './test/Second'
-import Third from './test/Third'
-import Fourth from './test/Fourth'
 import React from 'react'
 
-const TestTabsNavigator = createMaterialTopTabNavigator()
+import Seiji1 from './seiji/seiji1'
+import Seiji2 from './seiji/seiji2'
+import Seiji3 from './seiji/seiji3'
+import Seiji4 from './seiji/seiji4'
+
+const HomeStackNavigator = createMaterialTopTabNavigator()
 
 const routeDisplayNameMap = {
-  FirstRoute: '社会保険と\n選挙制度の変遷',
-  SecondRoute: '年金特別会計',
-  ThirdRoute: '人口推移と\n生活保護',
-  FourthRoute: '四番目の画面',
+  Seiji1Route: '社会保険と\n選挙制度の変遷',
+  Seiji2Route: '年金特別会計',
+  Seiji3Route: '人口推移と\n生活保護',
+  Seiji4Route: '四番目の画面',
 };
 
 const CustomTabBar = ({ state, descriptors, navigation }) => {
@@ -27,7 +28,11 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
         return (
           <TouchableOpacity
             key={route.key}
-            onPress={() => navigation.navigate(route.name)}
+            onPress={() => 
+              {
+                console.log(route.name);
+                navigation.navigate(route.name)}
+              }
             style={[styles.tab, isFocused && styles.tabFocused]}
           >
             <Text style={[styles.tabText, isFocused && styles.tabTextFocused]}>
@@ -42,19 +47,19 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
   )
 }
 
-const TestTabs = () => {
+const TestTab = () => {
   return (
-    <TestTabsNavigator.Navigator
+    <HomeStackNavigator.Navigator
       tabBar={(props) => <CustomTabBar {...props} />}
       screenOptions={{
         tabBarStyle: { backgroundColor: '#f0f0f0' }
       }}
     >
-      <TestTabsNavigator.Screen name="FirstRoute" component={First} />
-      <TestTabsNavigator.Screen name="SecondRoute" component={Second} />
-      <TestTabsNavigator.Screen name="ThirdRoute" component={Third} />
-      <TestTabsNavigator.Screen name="FourthRoute" component={Fourth} />     
-    </TestTabsNavigator.Navigator>
+      <HomeStackNavigator.Screen key="Seiji1Route" name="Seiji1Route" component={Seiji1}/>
+      <HomeStackNavigator.Screen key="Seiji2Route" name="Seiji2Route" component={Seiji2}/>
+      <HomeStackNavigator.Screen key="Seiji3Route" name="Seiji3Route" component={Seiji3}/>
+      <HomeStackNavigator.Screen key="Seiji4Route" name="Seiji4Route" component={Seiji4}/>     
+    </HomeStackNavigator.Navigator>
   );
 };
 
@@ -91,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TestTabs;
+export default TestTab;

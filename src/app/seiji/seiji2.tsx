@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Second = () => {
+const Seiji2 = () => {
+  console.log('Seiji1 rendered'); // コンソールログを追加
   return (
     <View style={[styles.scene, { backgroundColor: 'lightblue' }]}>
-      <Text>Second Content</Text>
+      <Text>Seiji2</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   scene: {
@@ -17,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Second;
+export default Seiji2;

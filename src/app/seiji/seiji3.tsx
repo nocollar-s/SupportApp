@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Third = () => {
+const Seiji3 = () => {
   return (
     <View style={[styles.scene, { backgroundColor: 'lightblue' }]}>
-      <Text>Third Content</Text>
+      <Text>Seiji3</Text>
     </View>
   );
 };
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Third;
+export default Seiji3;

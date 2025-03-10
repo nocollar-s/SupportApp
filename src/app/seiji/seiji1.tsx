@@ -1,12 +1,11 @@
-
-
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Fourth = () => {
+const Seiji1 = () => {
+  console.log('Seiji1 rendered'); // コンソールログを追加
   return (
     <View style={[styles.scene, { backgroundColor: 'lightblue' }]}>
-      <Text>Fourth Content</Text>
+      <Text>Seiji1</Text>
     </View>
   );
 };
@@ -19,4 +18,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Fourth;
+export default React.memo(Seiji1);
+

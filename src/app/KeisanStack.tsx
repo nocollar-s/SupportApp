@@ -1,28 +1,95 @@
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
-import { createStackNavigator } from "@react-navigation/stack"
-import CustomHeader from './CustomHeader'
-import Keisan1 from './keisan/keisan1'
-import Keisan2 from './keisan/keisan2'
 
-const Stack = createStackNavigator()
+import Keisan1 from '../app/keisan/keisan1'
+import Keisan2 from '../app/keisan/keisan2'
+
+
+const KeisanStackNavigator = createMaterialTopTabNavigator()
+
+const routeDisplayNameMap = {
+  Keisan1Route: '社会保険と\n選挙制度の変遷',
+  Keisan2Route: '社会保険222と\n選挙制度の変遷',
+};
+
+const CustomTabBar = ({ state, descriptors, navigation }) => {
+  return (
+    <View style={styles.tabbar}>
+    <View style={styles.tabBarContainer }>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+      {state.routes.map((route, index) => {
+        const isFocused = state.index === index;
+        const displayName = routeDisplayNameMap[route.name] || route.name; // 表示名を取得
+            
+        return (
+          <TouchableOpacity
+            key={route.key}
+            onPress={() => 
+              {
+                console.log(route.name);
+                navigation.navigate(route.name)}
+              }
+            style={[styles.tab, isFocused && styles.tabFocused]}
+          >
+            <Text style={[styles.tabText, isFocused && styles.tabTextFocused]}>
+              {displayName}
+            </Text>
+          </TouchableOpacity>
+        )
+      })}
+    </ScrollView>
+    </View>
+    </View>
+  )
+}
 
 const KeisanStack = () => {
-    return (
-      <Stack.Navigator screenOptions={{
-        header: ({ navigation, route, options, back }) => (
-          <CustomHeader navigation={navigation} route={route} options={options} back={back} />
-        ),
-        gestureEnabled: true, // スワイプでの戻る操作を有効にする
-      }}>
-        <Stack.Screen name="Keisan1" component={Keisan1} 
-        options={{title: '補助金計算サポート', header: CustomHeader}} />
-        <Stack.Screen name="Keisan2" component={Keisan2} 
-        options={{title: '補助金計算サポート', header: CustomHeader}} />
-        
-        {/* 他の Stack Screen */}
-      </Stack.Navigator>
-    )
-  }
-  
-  export default KeisanStack
-  
+  return (
+    <KeisanStackNavigator.Navigator
+      tabBar={(props) => <CustomTabBar {...props} />}
+      screenOptions={{
+        tabBarStyle: { backgroundColor: '#f0f0f0' }
+      }}
+    >
+      <KeisanStackNavigator.Screen key="Keisan1Route" name="Keisan1Route" component={Keisan1}/>
+      <KeisanStackNavigator.Screen key="Keisan2Route" name="Keisan2Route" component={Keisan2}/>
+         
+    </KeisanStackNavigator.Navigator>
+  );
+};
+
+const styles = StyleSheet.create({
+  tabbar:{
+    backgroundColor:'green',
+
+  },
+  tabBarContainer: {
+    marginTop:50,
+    //flexDirection: 'row',
+    backgroundColor: 'yellow',
+    paddingVertical: 5,    
+    height: 75,
+  },
+  tab: {
+    padding: 5,
+    marginHorizontal: 5,
+    marginVertical:'auto',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    height:65,   
+    justifyContent:'center'
+  },
+  tabFocused: {
+    backgroundColor: 'blue',
+  },
+  tabText: {
+    color: '#333',    
+  },
+  tabTextFocused: {
+    color: '#fff',
+  },
+});
+
+export default KeisanStack;

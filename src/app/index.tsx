@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ArticleStack from './ArticleStack'
 import KeisanStack from './KeisanStack';
 import HomeStack from './HomeStack';
+import HomeTab from './HomeTab';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +18,7 @@ const Index = ():JSX.Element => {
     <View style={styles.container}> 
     <NavigationIndependentTree style={styles.container}>
     <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
-      <Tab.Navigator initialRouteName='Articles' 
+      <Tab.Navigator initialRouteName='Articles1' 
         screenOptions={{tabBarStyle: {
         backgroundColor: 'black',
         height: 55,
@@ -34,21 +35,21 @@ const Index = ():JSX.Element => {
         tabBarActiveTintColor:'white',
         tabBarInactiveTintColor:'gray',
         }}>
-          <Tab.Screen name='Articles' component={ArticleStack}
+          <Tab.Screen name='Articles1' component={ArticleStack}
           options={{
           tabBarLabel: '記事',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome6 name="book-open" size={25} color={color} style={styles.tabbar}  />
         ),
           }}/>
-          <Tab.Screen name='Keisan' component={KeisanStack}
+          <Tab.Screen name='Keisan1' component={KeisanStack}
           options={{
           tabBarLabel: '計算', // tabBarLabelを追加
           tabBarIcon: ({ color, size }) => (
             <FontAwesome6 name="calculator" size={28} color={color} style={styles.tabbar} />
           )}}/>
 
-          <Tab.Screen name='First' component={HomeStack}
+          <Tab.Screen name='Seiji1Route' component={HomeTab}
           options={{
           tabBarLabel: '家', // tabBarLabelを追加
           tabBarIcon: ({ color, size }) => (
