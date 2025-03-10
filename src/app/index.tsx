@@ -1,9 +1,6 @@
 import React from 'react';
 import { NavigationIndependentTree } from '@react-navigation/native';
 import { StyleSheet, View, StatusBar} from 'react-native';
-//import MyTabs from './TestTabs'; // MyTabs コンポーネントをインポート
-//import Articles from './memo/articles';
-//import Keisan from './memo/keisan';
 import { FontAwesome6 } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ArticleStack from './ArticleStack'
@@ -75,7 +72,8 @@ const styles = StyleSheet.create({
     color:'white',
     alignItems:'center',
     justifyContent:'center',  
-    paddingBottom:8,
+    paddingBottom:5,
+    marginVertical:'auto',
   }
 })
 

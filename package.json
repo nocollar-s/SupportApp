@@ -39,7 +39,8 @@
     "react-scrollbars-custom": "^4.1.1",
     "react-swipeable-tabs": "^2.2.0",
     "recharts": "^2.15.1",
-    "expo-screen-orientation": "~8.0.4"
+    "expo-screen-orientation": "~8.0.4",
+    "expo-navigation-bar": "~4.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
