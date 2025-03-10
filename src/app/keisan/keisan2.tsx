@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Keyboard, Alert } from 'react-native';
 
-const Keisan10 = () => {
+const Keisan2 = () => {
   const [standardMonthlySalary, setStandardMonthlySalary] = useState('');
   const [daysOff, setDaysOff] = useState('');
   const [salaryDuringAbsence, setSalaryDuringAbsence] = useState('');
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Keisan10;
+export default Keisan2;

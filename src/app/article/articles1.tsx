@@ -1,12 +1,10 @@
-
-
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const FirstRoute = () => {
+const Articles1 = () => {
   return (
     <View style={[styles.scene, { backgroundColor: 'lightblue' }]}>
-      <Text>Item 22 Second Content</Text>
+      <Text>Articles1</Text>
     </View>
   );
 };
@@ -19,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FirstRoute;
+export default Articles1;

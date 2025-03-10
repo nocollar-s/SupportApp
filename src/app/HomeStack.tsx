@@ -1,21 +1,29 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import FirstRoute from './FirstRoute'
-import SecondRoute from './SecondRoute'
-import FourthRoute from './FourthRoute'
-import ThirdRoute from './ThirdRoute'
+import First from './test/First'
+import Second from './test/Second'
+import Third from './test/Third'
+import Fourth from './test/Fourth'
 import React from 'react'
-import { StatusBar } from 'expo-status-bar'
 
 const TestTabsNavigator = createMaterialTopTabNavigator()
 
+const routeDisplayNameMap = {
+  FirstRoute: '社会保険と\n選挙制度の変遷',
+  SecondRoute: '年金特別会計',
+  ThirdRoute: '人口推移と\n生活保護',
+  FourthRoute: '四番目の画面',
+};
+
 const CustomTabBar = ({ state, descriptors, navigation }) => {
   return (
-    <View style={styles.container}>
-    <View style={styles.tabBarContainer}>
+    <View style={styles.tabbar}>
+    <View style={styles.tabBarContainer }>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} >
       {state.routes.map((route, index) => {
-        const isFocused = state.index === index
+        const isFocused = state.index === index;
+        const displayName = routeDisplayNameMap[route.name] || route.name; // 表示名を取得
+            
         return (
           <TouchableOpacity
             key={route.key}
@@ -23,7 +31,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
             style={[styles.tab, isFocused && styles.tabFocused]}
           >
             <Text style={[styles.tabText, isFocused && styles.tabTextFocused]}>
-              {route.name}
+              {displayName}
             </Text>
           </TouchableOpacity>
         )
@@ -42,32 +50,25 @@ const TestTabs = () => {
         tabBarStyle: { backgroundColor: '#f0f0f0' }
       }}
     >
-      <TestTabsNavigator.Screen name="FirstRoute" component={FirstRoute} />
-      <TestTabsNavigator.Screen name="SecondRoute" component={SecondRoute} />
-      <TestTabsNavigator.Screen name="ThirdRoute" component={ThirdRoute} />
-      <TestTabsNavigator.Screen name="FourthRoute" component={FourthRoute} />
-
+      <TestTabsNavigator.Screen name="FirstRoute" component={First} />
+      <TestTabsNavigator.Screen name="SecondRoute" component={Second} />
+      <TestTabsNavigator.Screen name="ThirdRoute" component={Third} />
+      <TestTabsNavigator.Screen name="FourthRoute" component={Fourth} />     
     </TestTabsNavigator.Navigator>
   );
 };
 
 const styles = StyleSheet.create({
-  container:{
-    flex:0,
-    top:0,
-    backgroundColor: 'yellow',    
+  tabbar:{
+    backgroundColor:'green',
 
   },
-  
   tabBarContainer: {
-    flexDirection: 'row',
-    paddingVertical: 10, 
-    top:25,   
-    height: 105,
-    justifyContent: 'flex-end',
-    backgroundColor:'green',
-    flex: 1,
-    alignItems: 'center',
+    marginTop:50,
+    //flexDirection: 'row',
+    backgroundColor: 'yellow',
+    paddingVertical: 5,    
+    height: 75,
   },
   tab: {
     padding: 5,
@@ -76,9 +77,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
-    height:40,   
+    height:65,   
     justifyContent:'center'
-
   },
   tabFocused: {
     backgroundColor: 'blue',

@@ -1,12 +1,10 @@
-
-
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const FourthRoute = () => {
+const Keisan1 = () => {
   return (
     <View style={[styles.scene, { backgroundColor: 'lightblue' }]}>
-      <Text>Item 44 Second Content</Text>
+      <Text>Keisan1</Text>
     </View>
   );
 };
@@ -19,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FourthRoute;
+export default Keisan1;

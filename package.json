@@ -11,6 +11,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
     "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-navigation/bottom-tabs": "^7.2.1",
     "@react-navigation/material-top-tabs": "^7.1.0",
     "@react-navigation/stack": "^7.1.1",
     "expo": "~52.0.25",
@@ -29,6 +30,7 @@
     "react-native-screens": "~4.4.0",
     "react-native-svg": "^15.11.1",
     "react-native-tab-view": "^4.0.5",
+    "react-native-zoomable-view": "^0.3.1",
     "react-navigation": "^5.0.0",
     "react-swipeable-tabs": "^2.2.0",
     "recharts": "^2.15.1"

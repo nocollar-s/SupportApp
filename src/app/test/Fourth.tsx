@@ -3,10 +3,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const SecondRoute = () => {
+const Fourth = () => {
   return (
     <View style={[styles.scene, { backgroundColor: 'lightblue' }]}>
-      <Text>Item 22 Second Content</Text>
+      <Text>Fourth Content</Text>
     </View>
   );
 };
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SecondRoute;
+export default Fourth;
