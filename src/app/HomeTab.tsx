@@ -58,7 +58,7 @@ const TestTab = () => {
       <HomeStackNavigator.Screen key="Seiji1Route" name="Seiji1Route" component={Seiji1}/>
       <HomeStackNavigator.Screen key="Seiji2Route" name="Seiji2Route" component={Seiji2}/>
       <HomeStackNavigator.Screen key="Seiji3Route" name="Seiji3Route" component={Seiji3}/>
-      <HomeStackNavigator.Screen key="Seiji4Route" name="Seiji4Route" component={Seiji4}/>     
+      <HomeStackNavigator.Screen key="Seiji4Route" name="Seiji4Route" component={Seiji4} />     
     </HomeStackNavigator.Navigator>
   );
 };

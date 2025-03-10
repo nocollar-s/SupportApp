@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import ImageZoom from 'react-native-image-pan-zoom';
-
+//import Orientation from 'react-native-orientation-locker'
+//import { ScreenOrientationTypes } from 'react-native-screens';
+//import * as ScreenOrientation from 'expo-screen-orientation'
 
 const image1 = require('../../../assets/一般会計予算.png');
 
 const Seiji4 = () => {
-  const { width, height } = Dimensions.get('window');
-  const imageHeight = 380;
-  const imageWidth = (857 / 409) * imageHeight;
+const { width, height } = Dimensions.get('window');
+const imageHeight = 380;
+const imageWidth = (857 / 409) * imageHeight;
 
   return (
     <ScrollView style={styles.container}>

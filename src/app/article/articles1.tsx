@@ -1,20 +1,28 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,ScrollView } from 'react-native';
+//import { ScrollView } from 'react-native-gesture-handler';
 
 const Articles1 = () => {
   return (
-    <View style={[styles.scene, { backgroundColor: 'lightblue' }]}>
+    <ScrollView style={styles.scene}>
+      <View style={styles.space}>
       <Text>Articles1</Text>
-    </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   scene: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    //justifyContent: 'center',
+    //alignItems: 'center',
   },
+  space:{
+    paddingTop:50,
+    marginTop:100,
+  }
+
 });
 
 export default Articles1;
