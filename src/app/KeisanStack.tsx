@@ -4,6 +4,7 @@ import React from 'react'
 
 import Keisan1 from '../app/keisan/keisan1'
 import Keisan2 from '../app/keisan/keisan2'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 
 const KeisanStackNavigator = createMaterialTopTabNavigator()
@@ -15,7 +16,7 @@ const routeDisplayNameMap = {
 
 const CustomTabBar = ({ state, descriptors, navigation }) => {
   return (
-    <View style={styles.tabbar}>
+    <SafeAreaView style={styles.tabbar}>
     <View style={styles.tabBarContainer }>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} >
       {state.routes.map((route, index) => {
@@ -40,7 +41,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
       })}
     </ScrollView>
     </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -61,11 +62,12 @@ const KeisanStack = () => {
 
 const styles = StyleSheet.create({
   tabbar:{
+    flex:1,
     backgroundColor:'green',
 
   },
   tabBarContainer: {
-    marginTop:50,
+    //marginTop:50,
     //flexDirection: 'row',
     backgroundColor: 'yellow',
     paddingVertical: 5,    

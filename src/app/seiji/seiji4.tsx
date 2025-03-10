@@ -48,6 +48,12 @@ const imageWidth = (857 / 409) * imageHeight;
 お
 か
 き
+く
+け
+こ
+さ
+し
+す
 `}
           {/* ... 長いテキスト ... */}
         </Text>
@@ -58,10 +64,14 @@ const imageWidth = (857 / 409) * imageHeight;
 
 const styles = StyleSheet.create({
   container: {
+    
     flex: 1,
+    paddingTop:10,
     backgroundColor: 'lightgray',
   },
   imageContainer: {
+    paddingTop:10,
+    marginTop:10,
     height: 400,
     backgroundColor:'red',
     //width:500,

@@ -12,6 +12,7 @@ const Seiji1 = () => {
 
 const styles = StyleSheet.create({
   scene: {
+    marginTop:10,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
