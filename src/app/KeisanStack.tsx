@@ -62,8 +62,9 @@ const KeisanStack = () => {
 
 const styles = StyleSheet.create({
   tabbar:{
-    flex:1,
-    backgroundColor:'green',
+    //flex:1,
+    backgroundColor:'red',
+    paddingTop: 10, // paddingTop を調整
 
   },
   tabBarContainer: {
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     //flexDirection: 'row',
     backgroundColor: 'yellow',
     paddingVertical: 5,    
-    height: 75,
+    height: 50,
   },
   tab: {
     padding: 5,
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height:65,   
     justifyContent:'center'
+
   },
   tabFocused: {
     backgroundColor: 'blue',

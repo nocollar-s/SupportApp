@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, Dimensions, Animated } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 
 const routeDisplayNameMap = {
   Seiji1Route: '社会保険と\n選挙制度の変遷',
@@ -9,81 +9,57 @@ const routeDisplayNameMap = {
 };
 
 const TopTabBar = ({ state, descriptors, navigation }) => {
-  const { width, height } = Dimensions.get('window');
-  const isLandscape = width > height;
-  const tabBarHeight = isLandscape ? 80 : 120;
-  const [hideTabBar, setHideTabBar] = useState(isLandscape);
-  const translateY = useRef(new Animated.Value(isLandscape ? -tabBarHeight : 0)).current;
-
-  useEffect(() => {
-    const onChange = ({ window: { width, height } }) => {
-      const newIsLandscape = width > height;
-      setHideTabBar(newIsLandscape);
-    };
-
-    Dimensions.addEventListener('change', onChange);
-
-    return () => Dimensions.removeEventListener('change', onChange);
-  }, []);
-
-  useEffect(() => {
-    Animated.timing(translateY, {
-      toValue: hideTabBar ? -tabBarHeight : 0,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  }, [hideTabBar]);
-
   return (
-    <TouchableOpacity
-      style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 1 }}
-      onPress={() => setHideTabBar(!hideTabBar)}
-    >
-      <Animated.View
-        style={[styles.tabBarContainer, { height: tabBarHeight, transform: [{ translateY }] }]}
-      >
-        <SafeAreaView style={styles.safe}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {state.routes.map((route, index) => {
-              const isFocused = state.index === index;
-              const displayName = routeDisplayNameMap[route.name] || route.name;
+    <View style={styles.tabBarContainer}>
+      <SafeAreaView style={styles.safe}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {state.routes.map((route, index) => {
+            const isFocused = state.index === index;
+            const displayName = routeDisplayNameMap[route.name] || route.name;
 
-              return (
-                <TouchableOpacity
-                  key={route.key}
-                  onPress={() => {
-                    console.log(route.name);
-                    navigation.navigate(route.name);
-                  }}
-                  style={[styles.tab, isFocused && styles.tabFocused]}
-                >
-                  <Text style={[styles.tabText, isFocused && styles.tabTextFocused]}>
-                    {displayName}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
-        </SafeAreaView>
-      </Animated.View>
-    </TouchableOpacity>
+            return (
+              <TouchableOpacity
+                key={route.key}
+                onPress={() => {
+                  console.log(route.name);
+                  navigation.navigate(route.name);
+                }}
+                style={[styles.tab, isFocused && styles.tabFocused]}
+              >
+                <Text style={[styles.tabText, isFocused && styles.tabTextFocused]}>
+                  {displayName}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
+      </SafeAreaView>
+    </View>
   );
 };
 
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  content: {
+    height: 2000,
+    padding: 20,
+  },
   safe: {
     backgroundColor: 'green',
-
   },
   tabBarContainer: {
     backgroundColor: 'yellow',
-
   },
   tab: {
     backgroundColor: 'red',
     padding: 5,
     marginHorizontal: 5,
-    //marginVertical: 'auto',
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,

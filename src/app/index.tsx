@@ -1,29 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavigationIndependentTree } from '@react-navigation/native';
-import { StyleSheet, View, StatusBar, Dimensions } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ArticleStack from './ArticleStack';
 import KeisanStack from './KeisanStack';
-import HomeStack from './HomeStack';
 import HomeTab from './HomeTab';
 
 const Tab = createBottomTabNavigator();
 
 const Index = (): JSX.Element => {
-  const { width, height } = Dimensions.get('window');
-  const [isLandscape, setIsLandscape] = useState(width > height);
-
-  useEffect(() => {
-    const onChange = ({ window: { width, height } }) => {
-      setIsLandscape(width > height);
-    };
-
-    Dimensions.addEventListener('change', onChange);
-
-    return () => Dimensions.removeEventListener('change', onChange);
-  }, []);
-
   return (
     <View style={styles.container}>
       <NavigationIndependentTree style={styles.container}>
@@ -33,15 +19,15 @@ const Index = (): JSX.Element => {
           screenOptions={{
             tabBarStyle: {
               backgroundColor: 'black',
-              height: isLandscape ? 35 : 40,
+              height: 50,
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 27,
-              width: '270',
+              width: 320,
               marginHorizontal: 'auto',
-              margin: 2,
-              marginBottom: 14,
-              paddingTop:isLandscape ? 7:0,
+              paddingVertical:20,
+              margin: 3,
+              marginBottom: 16,
             },
             headerShown: false,
             title: '補助金サポート',
@@ -55,12 +41,7 @@ const Index = (): JSX.Element => {
             options={{
               tabBarLabel: () => null,
               tabBarIcon: ({ color, size }) => (
-                <FontAwesome6
-                  name="book-open"
-                  size={isLandscape ? 20 : 23}
-                  color={color}
-                  style={styles.tabbar}
-                />
+                <FontAwesome6 name="book-open" size={28} color={color} style={styles.tabbar} />
               ),
             }}
           />
@@ -70,12 +51,7 @@ const Index = (): JSX.Element => {
             options={{
               tabBarLabel: () => null,
               tabBarIcon: ({ color, size }) => (
-                <FontAwesome6
-                  name="calculator"
-                  size={isLandscape ? 20 : 23}
-                  color={color}
-                  style={styles.tabbar}
-                />
+                <FontAwesome6 name="calculator" size={28} color={color} style={styles.tabbar} />
               ),
             }}
           />
@@ -85,12 +61,7 @@ const Index = (): JSX.Element => {
             options={{
               tabBarLabel: () => null,
               tabBarIcon: ({ color, size }) => (
-                <FontAwesome6
-                  name="house"
-                  size={isLandscape ? 20 : 23}
-                  color={color}
-                  style={styles.tabbar}
-                />
+                <FontAwesome6 name="house" size={28} color={color} style={styles.tabbar} />
               ),
             }}
           />
@@ -106,14 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   tabbar: {
-    //color: 'green',
     alignItems: 'center',
-    //justifyContent: 'center',
-    paddingBottom: 0,
-    marginBottom:0,
-    //paddingTop:0,
-    //marginTop:0,
-    //marginVertical: 'auto',
   },
 });
 
